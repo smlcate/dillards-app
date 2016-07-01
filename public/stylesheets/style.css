@@ -47,3 +47,7 @@ main {
 .userForm .submitUserInput {
   width: 100px;
 }
+
+.admin tbody {
+  background-color: blue;  
+}

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+  main
+        
+    form(action="newStore" method="POST" class="userForm")
+      input(type="text" name="addressInput" placeholder="Street Adress") 
+      input(type="text" name="cityInput" placeholder="City")
+      input(type="text" name="stateInput" placeholder="State")
+      input(type="text" name="zipInput" placeholder="Zip")
+
+
+      input(type="submit" class="submitUserInput" name="submitUserInput" value="Sign-In" )
+      
+      
+      h4 #{ error }

@@ -10,7 +10,7 @@ block content
       h1 #{ title }
       table.table.table-stripped
         tbody
-          each user, key in userData
+          each location, key in locationData
             //- tr(data-id="#{bookData.title}")
             //- td.action
             //-   //- button.btn.btn-danger.btn-sm.remove(type="button")
@@ -21,9 +21,8 @@ block content
             
               div.searchResult
                 //- form(action="/editBook", method="post", id="newBookForm", class="libraryInfo")
-                h3= userData[key].email
-                if(userData[key].firstname)
-                  h4= userData[key].firstname
+                h3= locationData[key].city + ", " + locationData[key].state
+                p= locationData[key].address + " (" + locationData[key].zip + ")"
               //- div(class="toolPane")
               //-   a(href="/editBook/"+title) Edit
               //-   a(href="/deleteBook", value="Delete", name="delete", id="delete") Delete
