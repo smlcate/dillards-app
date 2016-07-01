@@ -1,8 +1,49 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+header {
+  display: flex;
+  justify-content: space-around;
+  background: darkBlue;
+  align-items: center;
+  color: white;
+  width: 101%;
+  margin-left: -7px;
+  margin-top: -7px;
 }
 
-a {
-  color: #00B7FF;
+header h1 {
+  margin-left: -100px;
+  font-size: 30px;
+}
+
+header nav {
+  margin-right: -100px;
+}
+
+header a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+}
+
+main {
+  display: flex;
+  /*background-color: green;*/
+  justify-content: center;
+}
+
+.userForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.userForm input {
+  height: 30px;
+  width: 400px;
+  margin: 10px;
+  font-size: 25px;
+}
+
+.userForm .submitUserInput {
+  width: 100px;
 }
