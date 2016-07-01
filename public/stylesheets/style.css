@@ -48,6 +48,57 @@ main {
   width: 100px;
 }
 
+.admin {
+  width: 60%;
+}
+
 .admin tbody {
-  background-color: blue;  
+  background-color: blue;
+}
+
+#locationsContainer {
+  width: 60%;
+}
+
+#locationsContainer .searchInfo {
+  height: 100px;
+  margin-top: 10px;
+  /*border: 1px solid black;*/
+}
+
+.searchInfo {
+  display: flex;
+  height: 100px;
+  /*background-color: lightblue;*/
+  border: 1px solid black;
+  margin-top: 10px;
+}
+
+.searchInfo img {
+  height: 100px;
+  width: 100px;
+}
+
+#searchResult p {
+  margin-top: 0px;
+
+}
+
+#addressInfo {
+  margin-top: -20px;
+  padding-left: 10px;
+  padding-top: 5px;
+  /*display: flex;*/
+  /*background-color: blue;*/
+
+}
+
+#addressInfo img {
+  height: 100px;
+  width: 100px;
+}
+
+#addressInfo p {
+  margin-top: -20px;
+
 }

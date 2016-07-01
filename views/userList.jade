@@ -18,12 +18,14 @@ block content
             //- td.action
             div(class="searchInfo")
               
-            
-              div.searchResult
+              img(src="/images/employee_image_placeholder.png")
+
+              div#searchResult
                 //- form(action="/editBook", method="post", id="newBookForm", class="libraryInfo")
-                h3= userData[key].email
+                p= userData[key].email
                 if(userData[key].firstname)
-                  h4= userData[key].firstname
+                  p= userData[key].firstname
+                  p= "Store Id: " + userData[key].lid
               //- div(class="toolPane")
               //-   a(href="/editBook/"+title) Edit
               //-   a(href="/deleteBook", value="Delete", name="delete", id="delete") Delete

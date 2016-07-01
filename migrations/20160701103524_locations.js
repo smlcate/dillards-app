@@ -6,6 +6,9 @@ exports.up = function(knex, Promise) {
     table.string('city').notNullable();
     table.string('zip').notNullable();
     table.string('address').notNullable();
+    table.string('rating');
+    table.string('building_img');
+
   })
 };
 

@@ -5,7 +5,7 @@ block content
   main
   
     
-    div.admin
+    div#locationsContainer
 
       h1 #{ title }
       table.table.table-stripped
@@ -17,15 +17,17 @@ block content
             //-   //-   span.glyphicon.glyphicon-remove(title="Remove")
             //- td.action
             div(class="searchInfo")
-              
             
-              div.searchResult
-                //- form(action="/editBook", method="post", id="newBookForm", class="libraryInfo")
+              img(src="/images/dillard_store.jpg")
+              
+              div#addressInfo
+              
                 h3= locationData[key].city + ", " + locationData[key].state
                 p= locationData[key].address + " (" + locationData[key].zip + ")"
-              //- div(class="toolPane")
-              //-   a(href="/editBook/"+title) Edit
-              //-   a(href="/deleteBook", value="Delete", name="delete", id="delete") Delete
+                
+              div.searchResult
+                
+                
 
 
               

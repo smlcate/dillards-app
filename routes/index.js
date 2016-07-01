@@ -64,16 +64,17 @@ router.post('/empSignup', function(req, res, next) {
   var password = bcrypt.hashSync(req.body.passwordInput, 10);
   var firstname = req.body.fNameInput;
   var lastname = req.body.lNameInput;
-
-  console.log(email,password)
+  var lid = req.body.lidInput;
+  var did = req.body.didInput
 
   knex('employees')
   .insert({
     email: email,
     password: password,
     firstname: firstname,
-    lastname: lastname
-
+    lastname: lastname,
+    lid: lid,
+    did: did
   })
   .catch(function(err) {
     console.log(err);
@@ -152,7 +153,8 @@ router.get('/employeeList', function(req,res,next) {
       var user = {
         email: data[i].email,
         firstname: data[i].firstname,
-        lastname: data[i].lastname
+        lastname: data[i].lastname,
+        lid: data[i].lid
       }
       users.push(user);
     }
