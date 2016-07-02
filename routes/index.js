@@ -65,7 +65,7 @@ router.post('/empSignup', function(req, res, next) {
   var firstname = req.body.fNameInput;
   var lastname = req.body.lNameInput;
   var lid = req.body.lidInput;
-  var did = req.body.didInput
+  var did = req.body.didInput;
 
   knex('employees')
   .insert({
@@ -101,8 +101,6 @@ router.post('/signin', function(req, res, next) {
   var email = req.body.emailInput;
   var password = req.body.passwordInput;
 
-  console.log(email,password)
-
   knex('users')
   .where({ email: email })
   .first()
@@ -110,6 +108,7 @@ router.post('/signin', function(req, res, next) {
     console.log(data);
     if(bcrypt.compareSync(password, data.password, 10)) {
       console.log("Match")
+
       res.render('index');
     } else {
       console.log('No match');
@@ -154,7 +153,8 @@ router.get('/employeeList', function(req,res,next) {
         email: data[i].email,
         firstname: data[i].firstname,
         lastname: data[i].lastname,
-        lid: data[i].lid
+        lid: data[i].lid,
+        did: data[i].did
       }
       users.push(user);
     }
@@ -177,8 +177,10 @@ router.get('/locations', function(req, res, next) {
   .then(function(data){
     console.log(data);
     var locations = [];
+    var comment_length = 0;
     for (var i = 0; i < data.length; i++) {
       var location = {
+        id: data[i].id,
         state: data[i].state,
         city: data[i].city,
         zip: data[i].zip,
@@ -187,12 +189,32 @@ router.get('/locations', function(req, res, next) {
       locations.push(location);
     }
     console.log(data);
-    res.render('locations', { title: 'Locations', locationData: locations });
+    res.render('locations', { title: 'Locations', locationData: locations, commentLength: comment_length });
   })
   .catch(function(err){
     console.log(err)
   })
   // res.render('locations')
+})
+
+router.post('/comments', function(req, res, next) {
+  var id = req.body.id;
+  var comments = [];
+
+  knex('comments')
+  .select('*')
+  .where({ lid: id })
+  .then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+      var comment = {
+        commentText: data[i].comment,
+        postDate: data[i].post_date
+      }
+      comments.push(comment);
+    }
+
+  })
+  res.render('comments', { title: 'Comments', commentData: comments });
 })
 
 router.post('/newStore', function(req, res, next) {

@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+  main
+    
+    h1 #{ title }
+    table.table.table-stripped
+      tbody
+        each user, key in commentData
+          //- tr(data-id="#{bookData.title}")
+          //- td.action
+          //-   //- button.btn.btn-danger.btn-sm.remove(type="button")
+          //-   //-   span.glyphicon.glyphicon-remove(title="Remove")
+          //- td.action
+          div(class="searchInfo")
+            
+            img(src="/images/employee_image_placeholder.png")
+
+            div#searchResult
+              //- form(action="/editBook", method="post", id="newBookForm", class="libraryInfo")
+              p= commentData[key].comment
+              p= commentData[key].post_date
+
+            
+    script(type="text/javascript", src="routes/index.js")

@@ -8,6 +8,9 @@ var jade = require('jade');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var employees = require('./routes/employees');
+var locations = require('./routes/locations');
+
 
 var app = express();
 
