@@ -218,6 +218,7 @@ router.get('/userList', function(req,res,next) {
 });
 
 router.get('/employeeList', function(req,res,next) {
+  console.log(sessionData)
   knex.select('*')
   .from('employees')
   .then(function(data){
@@ -248,6 +249,7 @@ router.get('/newStore', function(req, res, next) {
 })
 
 router.get('/locations', function(req, res, next) {
+  console.log(sessionData)
   knex.select('*')
   .from('locations')
   .then(function(data){
@@ -296,8 +298,72 @@ router.post('/comments', function(req, res, next) {
   res.render('comments', { title: 'Comments', commentData: comments });
 })
 
-router.post('/comment', function(req, res, next) {
-  var comment = req.body.newComment;
+// app.controller('updateCommentsController', function($scope) {
+//
+// })
+
+router.post('/newComment/:id', function(req, res, next) {
+  var comment = req.body.comment;
+  var lid = req.params.id.slice(1);
+  var owner = sessionData.user.email
+  console.log(sessionData)
+  var storeData = {
+
+  }
+
+  var departments = [];
+  var comments = [];
+
+  knex('comments')
+  .insert({
+    comment: comment,
+    lid: lid,
+    owner: owner
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+
+  knex.select('*')
+  .from('comments')
+  .where({ lid: lid })
+  .then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+      comments.push(data[i]);
+    }
+    console.log(comments);
+    console.log(data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+
+
+  knex.select('*')
+  .from('departments')
+  .then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+      console.log(data)
+      departments.push(data[i].department);
+    }
+
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+
+  knex.select('*')
+  .from('locations')
+  .where({ id: sessionData.user.lid })
+  .then(function(data) {
+    console.log(data[0]);
+    storeData = data[0];
+    console.log(departments);
+    res.render('storeHomePage', { storeData: storeData, departments: departments, comments: comments })
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
 
 })
 
@@ -346,6 +412,7 @@ router.get('/store/:lid', function(req, res, next) {
   };
 
   var departments = [];
+  var comments = [];
 
 
   knex.select('*')
@@ -361,6 +428,21 @@ router.get('/store/:lid', function(req, res, next) {
   .catch(function(err) {
     console.log(err);
   })
+
+  knex.select('*')
+  .from('comments')
+  .where({ lid: sessionData.user.lid })
+  .then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+      comments.push(data[i]);
+    }
+    console.log(comments);
+    console.log(data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+
   knex.select('*')
   .from('locations')
   .where({ id: sessionData.user.lid })
@@ -368,7 +450,7 @@ router.get('/store/:lid', function(req, res, next) {
     console.log(data[0]);
     storeData = data[0];
     console.log(departments);
-    res.render('storeHomePage', { storeData: storeData, departments: departments })
+    res.render('storeHomePage', { storeData: storeData, departments: departments, comments: comments })
   })
   .catch(function(err) {
     console.log(err);
@@ -376,10 +458,59 @@ router.get('/store/:lid', function(req, res, next) {
 
 })
 
-router.get('/store/:id/department/:did', function(req, res, next) {
+router.get('/store/:lid/department/:did', function(req, res, next) {
+  // sessionData.user.lid = req.params.lid.slice(1);
+  sessionData.user.did = req.params.did.slice(1);
+  console.log(sessionData);
 
-  res.render('storeHomePage');
+  var storeData = {
 
+  };
+
+  var departments = [];
+  var comments = [];
+
+
+  knex.select('*')
+  .from('departments')
+  .then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+      console.log(data[i])
+      departments.push(data[i].department);
+      console.log(departments);
+    }
+
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+
+  knex.select('*')
+  .from('comments')
+  .where({ lid: sessionData.user.lid, did: sessionData.user.did })
+  .then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+      comments.push(data[i]);
+    }
+    console.log(comments);
+    console.log(data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+
+  knex.select('*')
+  .from('locations')
+  .where({ id: sessionData.user.lid })
+  .then(function(data) {
+    console.log(data[0]);
+    storeData = data[0];
+    console.log(departments);
+    res.render('storeHomePage', { storeData: storeData, departments: departments, comments: comments })
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
 })
 
 
