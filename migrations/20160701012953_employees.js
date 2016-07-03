@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.string('password').notNullable();
     table.string('firstname').notNullable();
     table.string('lastname').notNullable();
+    table.string('img');
     table.string('lid'); //location id
     table.string('did'); //department id
   })

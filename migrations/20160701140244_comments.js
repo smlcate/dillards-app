@@ -6,10 +6,10 @@ exports.up = function(knex, Promise) {
     table.string('post_date');
     table.string('lid');
     table.string('did');
-    table.string('uid');
+    table.string('owner');
   })
 };
 
 exports.down = function(knex, Promise) {
-
+  return knex.schema.dropTable('comments');
 };

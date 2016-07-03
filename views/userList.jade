@@ -23,13 +23,14 @@ block content
               div#searchResult
                 //- form(action="/editBook", method="post", id="newBookForm", class="libraryInfo")
                 p= userData[key].email
+                p= userData[key].state
                 if(userData[key].firstname)
                   p= userData[key].firstname
                   p= "Store Id: " + userData[key].lid
                   p= "Department: " + userData[key].did
               //- div(class="toolPane")
-              //-   a(href="/editBook/"+title) Edit
-              //-   a(href="/deleteBook", value="Delete", name="delete", id="delete") Delete
+                a(href="/editUser/#{userData[key].email}") Edit
+                a(href="/deleteUser/#{userData[key].email}") Delete
 
 
               

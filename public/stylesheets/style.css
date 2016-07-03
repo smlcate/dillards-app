@@ -27,9 +27,22 @@ header a {
 
 main {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   /*background-color: green;*/
   justify-content: center;
   font-family: sans-serif;
+}
+main .div {
+  border-bottom: 1px solid black;
+}
+
+.newComment {
+  display: flex;
+}
+
+.marioPunchBowl {
+  /*display:none;*/
 }
 
 .userForm {
@@ -131,4 +144,33 @@ main {
   margin-right: 5px;
   text-align: right;
   /*margin-left: 200px;*/
+}
+
+.storeInfo {
+  display: flex;
+  flex-direction: column;
+}
+.storeInfo .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-right: 10px;
+  color: white;
+  height: 75px;
+  margin-top: -75px;
+  text-align: left;
+}
+.storeInfo .container h3 {
+  text-align: left;
+
+  margin-bottom: -10px;
+}
+
+.departmentNav {
+  display: flex;
+  /*background-color: blue;*/
+  justify-content: space-around;
+  /*padding-left: 10px;*/
+  width: 200px;
 }

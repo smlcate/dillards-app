@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  
+  main
+    
+    div.storeInfo
+    
+      img(src="/images/dillard_store.jpg")
+      div.container
+        h3= storeData.city + ", " + storeData.state
+        p= storeData.address
+        //- h4= storeData.rating
+
+    nav.departmentNav
+    
+      each department, index in departments
+      
+        div
+      
+          a(href="/store/:#{storeData.id}/department/:#{department}")= department
+
+  script(type="text/javascript", src="routes/index.js") 

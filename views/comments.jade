@@ -3,8 +3,12 @@ extends layout
 block content
 
   main
-    
-    h1 #{ title }
+    div
+      h1 #{ title }
+    div
+      form(action="/comment").newComment
+        input(type="text", name="newComment", placeholder="Tell us something!")
+        input(type="submit", value="Submit")
     table.table.table-stripped
       tbody
         each user, key in commentData

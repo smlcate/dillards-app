@@ -16,26 +16,28 @@ block content
             //-   //- button.btn.btn-danger.btn-sm.remove(type="button")
             //-   //-   span.glyphicon.glyphicon-remove(title="Remove")
             //- td.action
-            div.searchInfo
-            
-              div#addressInfo
-                div
-                  img(src="/images/dillard_store.jpg")
-                div
-                  h3= locationData[key].city + ", " + locationData[key].state
-                  p= locationData[key].address + " (" + locationData[key].zip + ")"
-                
-                  ul#searchResult
+
+            a(href="store/:#{locationData[key].id}")
+              div.searchInfo
+              
+                div#addressInfo
+                  div
+                    img(src="/images/dillard_store.jpg")
+                  div
+                    h3= locationData[key].city + ", " + locationData[key].state
+                    p= locationData[key].address + " (" + locationData[key].zip + ")"
                   
-                    li
-                      form(action="comments", method="POST")
-                        input(type="number", name="id", value="#{commentLength}", style="display:none;")
-                        input(type="submit", href="submit", value="Comments #{commentLength}")
-                    li
-                      a(href="rating")= "Rating"
+                    ul#searchResult
+                    
+                      li
+                        form(action="comments", method="POST")
+                          input(type="number", name="id", value="#{commentLength}", style="display:none;")
+                          input(type="submit", href="submit", value="Comments #{commentLength}")
+                      li
+                        a(href="rating")= "Rating"
                 
-              p(id="thisId" name="thisId")= "id: " + locationData[key].id
+                p(id="thisId" name="thisId")= "id: " + locationData[key].id
 
 
               
-      script(type="text/javascript", src="routes/index.js") 
+        script(type="text/javascript", src="routes/index.js") 
